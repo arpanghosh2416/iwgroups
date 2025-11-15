@@ -2,14 +2,14 @@ name: Deploy Next.js to Hostinger
 
 on:
   push:
-    branches: [master] # or main
+    branches: [master] # or 'main' if your primary branch is main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build & Export Next.js
+      - name: Build & Export Next.js (Static Export)
         run: |
           npm run build
           npm run export
@@ -32,6 +32,12 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
 
+          # THIS IS YOUR REAL, VERIFIED HOSTINGER DOCUMENT ROOT
+          # DO NOT CHANGE THIS
           server-dir: /domains/youngarchitects.in/public_html/testiw/
+
+          # NEXT.JS STATIC EXPORT FOLDER
           local-dir: ./out/
+
+          # CLEAN BEFORE DEPLOY (ensures no leftover old files)
           dangerous-clean-slate: true
