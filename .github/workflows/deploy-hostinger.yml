@@ -31,6 +31,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /home/u643563705/domains/youngarchitects.in/public_html/test/
+          server-dir: /domains/youngarchitects.in/public_html/test/
           local-dir: ./out/
           dangerous-clean-slate: true
